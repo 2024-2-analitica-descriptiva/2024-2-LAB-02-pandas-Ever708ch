@@ -7,6 +7,15 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_13():
+    import pandas as pd
+     
+    tbl0 = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+    tbl1 = pd.read_csv("files/input/tbl1.tsv", sep="\t")
+    tbl2 = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    x = pd.merge(tbl0, tbl2, how = 'outer')
+    x = x.groupby('c1')['c5b'].sum()
+    return x
     """
     Si la columna `c0` es la clave en los archivos `tbl0.tsv` y `tbl2.tsv`,
     compute la suma de `tbl2.c5b` por cada valor en `tbl0.c1`.

@@ -7,6 +7,18 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_10():
+    import pandas as pd
+     
+    tbl0 = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+    tbl1 = pd.read_csv("files/input/tbl1.tsv", sep="\t")
+    tbl2 = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    df = tbl0.copy()
+    resultado = df.groupby('c1')['c2'].apply(lambda x: ':'.join(map(str, sorted(x)))).reset_index()
+    resultado = resultado.set_index('c1')
+    resultado.index.name = '_c1'   
+    return resultado
+
     """
     Construya una tabla que contenga `c1` y una lista separada por ':' de los
     valores de la columna `c2` para el archivo `tbl0.tsv`.

@@ -7,6 +7,18 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_09():
+    import pandas as pd
+     
+    tbl0 = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+    tbl1 = pd.read_csv("files/input/tbl1.tsv", sep="\t")
+    tbl2 = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    df = tbl0.copy()
+    df.loc[df['c3'] == '1999-02-29', 'c3'] = '1999-02-28'
+    df['c3'] = pd.to_datetime(df['c3'], format='%Y-%m-%d')
+    df['year'] = df['c3'].dt.year.astype(str)
+
+    return df
     """
     Agregue el año como una columna al dataframe que contiene el archivo
     `tbl0.tsv`.
